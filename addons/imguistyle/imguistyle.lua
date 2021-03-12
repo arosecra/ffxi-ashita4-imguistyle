@@ -107,11 +107,6 @@ local function save_imgui_style()
 		end
 	end
 	
-	
-	
-	
-	
-	
 	AshitaCore:GetConfigurationManager():Save(addon.name, 'imguistyle/' .. player.Name .. '.ini');
 end
 
@@ -123,12 +118,82 @@ local function load_imgui_style()
 	if player == nil or player.Name == nil then
 		return;
 	end
-	
-	local s = AshitaCore:GetGuiManager():GetStyle();
 
 	AshitaCore:GetConfigurationManager():Delete(addon.name);
     AshitaCore:GetConfigurationManager():Load(addon.name, 'imguistyle/' .. player.Name .. '.ini');
-
+	
+	local s = AshitaCore:GetGuiManager():GetStyle();
+	s.Alpha = configMgr:GetFloat(addon.name, "1", "Alpha", 0);
+	s.WindowPadding.x = configMgr:GetFloat(addon.name, "1", "WindowPadding.x", 0);
+	s.WindowPadding.y =	configMgr:GetFloat(addon.name, "1", "WindowPadding.y", 0);
+	s.WindowRounding = configMgr:GetFloat(addon.name, "1", "WindowRounding", 0);
+	s.WindowBorderSize = configMgr:GetFloat(addon.name, "1", "WindowBorderSize", 0);
+	s.WindowMinSize.x = configMgr:GetFloat(addon.name, "1", "WindowMinSize.x", 0);
+	s.WindowMinSize.y = configMgr:GetFloat(addon.name, "1", "WindowMinSize.y", 0);
+	s.WindowTitleAlign.x = configMgr:GetFloat(addon.name, "1", "WindowTitleAlign.x", 0);
+	s.WindowTitleAlign.y = configMgr:GetFloat(addon.name, "1", "WindowTitleAlign.y", 0);
+	--skipping WindowMenuButtonPosition
+	s.ChildRounding = configMgr:GetFloat(addon.name, "1", "ChildRounding", 0);
+	s.ChildBorderSize = configMgr:GetFloat(addon.name, "1", "ChildBorderSize", 0);
+	s.PopupRounding = configMgr:GetFloat(addon.name, "1", "PopupRounding", 0);
+	s.PopupBorderSize = configMgr:GetFloat(addon.name, "1", "PopupBorderSize", 0);
+	s.FramePadding.x = configMgr:GetFloat(addon.name, "1", "FramePadding.x", 0);
+	s.FramePadding.y = configMgr:GetFloat(addon.name, "1", "FramePadding.y", 0);
+	s.FrameRounding = configMgr:GetFloat(addon.name, "1", "FrameRounding", 0);
+	s.FrameBorderSize = configMgr:GetFloat(addon.name, "1", "FrameBorderSize", 0);
+	s.ItemSpacing.x = configMgr:GetFloat(addon.name, "1", "ItemSpacing.x", 0);
+	s.ItemSpacing.y = configMgr:GetFloat(addon.name, "1", "ItemSpacing.y", 0);
+	s.ItemInnerSpacing.x = configMgr:GetFloat(addon.name, "1", "ItemInnerSpacing.x", 0);
+	s.ItemInnerSpacing.y = configMgr:GetFloat(addon.name, "1", "ItemInnerSpacing.y", 0);
+	s.CellPadding.x = configMgr:GetFloat(addon.name, "1", "CellPadding.x", 0);
+	s.CellPadding.y = configMgr:GetFloat(addon.name, "1", "CellPadding.y", 0);
+	s.TouchExtraPadding.x = configMgr:GetFloat(addon.name, "1", "TouchExtraPadding.x", 0);
+	s.TouchExtraPadding.y = configMgr:GetFloat(addon.name, "1", "TouchExtraPadding.y", 0);
+	s.IndentSpacing = configMgr:GetFloat(addon.name, "1", "IndentSpacing", 0);
+	s.ColumnsMinSpacing = configMgr:GetFloat(addon.name, "1", "ColumnsMinSpacing", 0);
+	s.ScrollbarSize = configMgr:GetFloat(addon.name, "1", "ScrollbarSize", 0);
+	s.ScrollbarRounding = configMgr:GetFloat(addon.name, "1", "ScrollbarRounding", 0);
+	s.GrabMinSize = configMgr:GetFloat(addon.name, "1", "GrabMinSize", 0);
+	s.GrabRounding = configMgr:GetFloat(addon.name, "1", "GrabRounding", 0);
+	s.LogSliderDeadzone = configMgr:GetFloat(addon.name, "1", "LogSliderDeadzone", 0);
+	s.TabBorderSize = configMgr:GetFloat(addon.name, "1", "TabBorderSize", 0);
+	s.TabMinWidthForCloseButton = configMgr:GetFloat(addon.name, "1", "TabMinWidthForCloseButton", 0);
+	--skipping ColorButtonPosition
+	s.ButtonTextAlign.x = configMgr:GetFloat(addon.name, "1", "ButtonTextAlign.x", 0);
+	s.ButtonTextAlign.y = configMgr:GetFloat(addon.name, "1", "ButtonTextAlign.y", 0);
+	s.SelectableTextAlign.x = configMgr:GetFloat(addon.name, "1", "SelectableTextAlign.x", 0);
+	s.SelectableTextAlign.y = configMgr:GetFloat(addon.name, "1", "SelectableTextAlign.y", 0);
+	s.DisplayWindowPadding.x = configMgr:GetFloat(addon.name, "1", "DisplayWindowPadding.x", 0);
+	s.DisplayWindowPadding.y = configMgr:GetFloat(addon.name, "1", "DisplayWindowPadding.y", 0);
+	s.DisplaySafeAreaPadding.x = configMgr:GetFloat(addon.name, "1", "DisplaySafeAreaPadding.x", 0);
+	s.DisplaySafeAreaPadding.y = configMgr:GetFloat(addon.name, "1", "DisplaySafeAreaPadding.y", 0);
+	s.MouseCursorScale = configMgr:GetFloat(addon.name, "1", "MouseCursorScale", 0);
+	
+	if configMgr:GetString(addon.name, "1", "AntiAliasedLines") == "true" then
+		s.AntiAliasedLines = true
+	else
+		s.AntiAliasedLines = false
+	end
+	if configMgr:GetString(addon.name, "1", "AntiAliasedLinesUseTex") == "true" then
+		s.AntiAliasedLinesUseTex = true
+	else
+		s.AntiAliasedLinesUseTex = false
+	end
+	if configMgr:GetString(addon.name, "1", "AntiAliasedFill") == "true" then
+		s.AntiAliasedFill = true
+	else
+		s.AntiAliasedFill = false
+	end
+	s.CurveTessellationTol = configMgr:GetFloat(addon.name, "1", "CurveTessellationTol", 0);
+	s.CircleSegmentMaxError = configMgr:GetFloat(addon.name, "1", "CircleSegmentMaxError", 0);
+	
+	for i = 1,ImGuiCol_COUNT do
+		s.Colors[i].x = configMgr:GetFloat(addon.name, "2", "Colors["..i.."].x", 0);
+		s.Colors[i].y = configMgr:GetFloat(addon.name, "2", "Colors["..i.."].y", 0);
+		s.Colors[i].w = configMgr:GetFloat(addon.name, "2", "Colors["..i.."].w", 0);
+		s.Colors[i].z = configMgr:GetFloat(addon.name, "2", "Colors["..i.."].z", 0);
+	end
+	
 end
 
 
@@ -152,6 +217,7 @@ ashita.events.register('command', 'command_callback1', function (e)
     end
 	
 	if (e.command == '/imguistyle load') then
+		coroutine.sleepf(1);
 		load_imgui_style();
     end
 end);
